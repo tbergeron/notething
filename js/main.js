@@ -5,8 +5,6 @@ var tinymce_plugins = [
                 "insertdatetime media table contextmenu paste"
             ];
             
-// todo: #hash in uri to shortcut
-
 $(function() {
     $('#add, #refresh').tooltip({ placement: 'bottom' });
     
@@ -155,7 +153,7 @@ var loadPage = function(id) {
         $('#current_page_id').html(id);
         
         $('#content .btn').removeClass('disabled');
-        $('#content h1').html(page.get('title'));
+        $('#content h1').html(parseHashtags(page.get('title')));
         $('#editor_title').val(page.get('title'));
         $('#content #editor').html(page.get('content'));
 
