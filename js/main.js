@@ -28,7 +28,7 @@ function edit() {
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
         $('#edit i').removeClass('icon-white');
-        tinymce.activeEditor.destroy();
+        // tinymce.activeEditor.destroy();
 
     } else {
         edit_mode = true;
