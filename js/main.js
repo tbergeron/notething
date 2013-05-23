@@ -146,12 +146,6 @@ var editPage = function() {
         $('#edit').addClass('btn-primary');
         $('#edit i').addClass('icon-white');
         
-        $('.loader').show();
-        
-        setTimeout(function() {
-            $('.loader').hide();
-        }, 1000);
-        
         tinymce.init({
             selector: "#editor",
             width: $(window).width() - 315,
