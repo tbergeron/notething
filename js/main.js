@@ -104,7 +104,7 @@ var editPage = function() {
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
         $('#edit i').removeClass('icon-white');
-        tinymce.remove('#editor');
+        tinymce.remove('#' + tinymce.activeEditor.id);
 
     } else {
         edit_mode = true;
@@ -124,4 +124,6 @@ var editPage = function() {
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
         });
     }
+    
+    return false;
 }
