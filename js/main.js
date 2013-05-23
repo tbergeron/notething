@@ -125,5 +125,6 @@ var editPage = function() {
         });
     }
     
+    $("body").scrollTop(0);
     return false;
 }
