@@ -138,11 +138,11 @@ var editPage = function() {
         var object = {
             id: $('#current_page_id').html(),
             title: $('#content h1').html(),
-            content: $('#editor').html()
+            content: tinyMCE.activeEditor.getContent()
         };
         
-        SavePage(object, function(savedObject) {
-            if (savedObject) {
+        SavePage(object, function(success) {
+            if (success) {
                 alert('Saved with success!');
                 edit_mode = false;
                 $('#edit span').html('Edit');

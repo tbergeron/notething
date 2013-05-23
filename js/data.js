@@ -16,8 +16,20 @@ $(function() {
     }
     
     SavePage = function(object, done) {
-        Page.save(object, function() {
-            done(true);
+        var PageModel = Parse.Object.extend("Page");
+
+        var page = new PageModel();
+        page.set("id", object.id);
+        page.set("title", object.title);
+        page.set("content", object.content);
+        
+        page.save(null, {
+            success: function(savedObject) {
+                done(savedObject);
+            },
+            error: function(object, error) {
+                alert('erreur tabarnak');
+            }
         });
     }
 });
