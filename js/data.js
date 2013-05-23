@@ -15,7 +15,9 @@ $(function() {
         });
     }
     
-    SavePage = function(id, object, done) {
-        // todo: save
+    SavePage = function(object, done) {
+        Page.save(object, function() {
+            done(true);
+        });
     }
 });

@@ -51,6 +51,10 @@ div#wrapper div#sidebar ul li a span.hashtag {
     color: #1A80CD;
 }
 
+#current_page_id {
+    display: none;
+}
+
 div#wrapper div#sidebar ul li a.selected {
     background: #fcf4cc;
     /*background: #EBEAE5;*/

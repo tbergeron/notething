@@ -122,6 +122,8 @@ var loadPage = function(id) {
     $('.loader').show();
     
     GetPage(id, function(page) {
+        $('#current_page_id').html(id);
+        
         $('#content .btn').removeClass('disabled');
         $('#content h1').html(page.get('title'));
         $('#content #editor').html(page.get('content'));
@@ -133,12 +135,26 @@ var loadPage = function(id) {
 var editPage = function() {
     // Save
     if (edit_mode) {
-        edit_mode = false;
-        $('#edit span').html('Edit');
-        $('#edit').removeClass('btn-primary');
-        $('#edit i').removeClass('icon-white');
-        tinymce.remove('#editor');
-
+        var object = {
+            id: $('#current_page_id').html(),
+            title: $('#content h1').html(),
+            content: $('#editor').html()
+        };
+        
+        SavePage(object, function(savedObject) {
+            if (savedObject) {
+                alert('Saved with success!');
+                edit_mode = false;
+                $('#edit span').html('Edit');
+                $('#edit').removeClass('btn-primary');
+                $('#edit i').removeClass('icon-white');
+                tinymce.remove('#editor');
+                fillList();
+            } else {
+                alert('Error when saving!');
+            }            
+        });
+        
     // Load Editor
     } else {
         edit_mode = true;
