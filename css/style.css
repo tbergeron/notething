@@ -61,7 +61,7 @@ div#wrapper div#sidebar ul li a {
     text-decoration: none;
 }
 
-div#wrapper div#sidebar ul li a span.hashtag {
+span.hashtag {
     color: #1A80CD;
 }
 
