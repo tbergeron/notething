@@ -17,15 +17,22 @@ $(function() {
         $('#editor_title').focus();
     });
     
+    $('#print').click(function() {
+        if (!$(this).hasClass('disabled'))
+            window.print();
+    })
+    
     $('#edit').click(function() {
         if (!$(this).hasClass('disabled'))
             editPage();
     });
     
     $('#delete').click(function() {
-       if (confirm('Are you really sure?')) {
-           deletePage();
-       } 
+        if (!$(this).hasClass('disabled')) {
+            if (confirm('Are you really sure?')) {
+               deletePage();
+            }             
+        }
     });
     
     $(window).resize(function(){
