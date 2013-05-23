@@ -3,6 +3,10 @@ var edit_mode = false;
 $(function() {
     $('#add, #refresh').tooltip({ placement: 'bottom' });
     
+    $('#add').click(function() {
+        editPage(); 
+    });
+    
     $('#edit').click(function() {
         if (!$(this).hasClass('disabled'))
             editPage();
