@@ -64,6 +64,11 @@ div#wrapper div#sidebar ul li a div.last_update {
     color: #A9A9A9;
 }
 
+div#wrapper div#sidebar div#sidebar_top {
+    padding: 10px;
+    background-color: #fff;
+}
+
 div#wrapper div#content {
     color: #9a948d;
     margin-left: 250px;

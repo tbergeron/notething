@@ -1,6 +1,10 @@
 var edit_mode = false;
 
 $(function() {
+    $('#add').tooltip({
+       placement: 'bottom' 
+    });
+    
     $('#sidebar ul li:last').addClass('last');
     
     $('#sidebar ul li a').click(function() {
@@ -23,7 +27,7 @@ $(function() {
         var t = '<li>';
         t = t + '<a href="#">';
         t = t + '<div class="title">{{title}}</div>';
-        t = t + '<div class="last_update">{{lastUpdate}}</div>';
+        t = t + '<div class="last_update">{{updatedAt}}</div>';
         t = t + '</a>';
         t = t + '</li>';
         
@@ -34,7 +38,7 @@ $(function() {
                         id: page.id, 
                         title: page.get('title'), 
                         content: page.get('content'),
-                        lastUpdate = page.lastUpdate;
+                        updatedAt : formatDate(page.updatedAt)
                     };
                         
                     $('#sidebar ul').append(renderTemplate(t, object));
@@ -45,6 +49,18 @@ $(function() {
 
     fillList();
 });
+
+
+var formatDate = function(d) {
+  function pad(n){return n<10 ? '0'+n : n}
+  
+  return d.getUTCFullYear()+'-'
+      + pad(d.getUTCMonth()+1)+'-'
+      + pad(d.getUTCDate())+' '
+      + pad(d.getUTCHours())+':'
+      + pad(d.getUTCMinutes())+':'
+      + pad(d.getUTCSeconds())
+}
 
 var renderTemplate = function(html, context) {
     var template = Handlebars.compile(html);
