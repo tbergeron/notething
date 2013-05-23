@@ -195,6 +195,7 @@ var editPage = function() {
         tinymce.init({
             selector: "#editor",
             width: $(window).width() - 315,
+            content_css: 'css/editor_style.css',
             height: 500,
             plugins: tinymce_plugins,
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
