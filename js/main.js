@@ -44,11 +44,12 @@ $(function() {
     });
     
     if(window.location.hash) {
-        loadPage(window.location.hash.replace('#', ''));
+        $('#current_page_id').html(window.location.hash.replace('#', ''));
+        loadPage($('#current_page_id').html());
     } else {
         $('#add').click();
     }
-    
+
     fillList($('#current_page_id').html());
 });
 
