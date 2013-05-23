@@ -1,19 +1,33 @@
 var edit_mode = false;
+var tinymce_plugins = [
+                "advlist autolink lists link image print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste"
+            ];
+            
+// todo: #hash in uri to shortcut
 
 $(function() {
     $('#add, #refresh').tooltip({ placement: 'bottom' });
     
     $('#add').click(function() {
+        clear();
         $('#edit').removeClass('disabled');
-        editPage(); 
+        editPage();
+        $('#editor_title').focus();
     });
     
     $('#edit').click(function() {
         if (!$(this).hasClass('disabled'))
             editPage();
-            // todo: save page
     });
-                       
+    
+    $('#delete').click(function() {
+       if (confirm('Are you really sure?')) {
+           deletePage();
+       } 
+    });
+    
     $(window).resize(function(){
         $('#content, .mce-tinymce').css('width', $(window).width() - 315);
     });
@@ -25,6 +39,7 @@ $(function() {
     });
     
     fillList();
+    $('#add').click();
 });
 
 var fillList = function(select_object_id) {
@@ -122,12 +137,7 @@ var loadPage = function(id) {
     $('.loader').show();
     
     GetPage(id, function(page) {
-        $('#content h1').show();
-        $('#editor_title').hide();
-        $('#edit span').html('Edit');
-        $('#edit').removeClass('btn-primary');
-        $('#edit i').removeClass('icon-white');
-        tinymce.remove('#editor');
+        clear();
 
         $('#current_page_id').html(id);
         
@@ -153,8 +163,8 @@ var editPage = function() {
         SavePage(object, function(success) {
             if (success) {
                 edit_mode = false;
-                loadPage(object.id);
-                fillList(object.id);
+                fillList(success.id);
+                loadPage(success.id);
                 $('.loader').hide();
             } else {
                 alert('Error when saving!');
@@ -174,14 +184,31 @@ var editPage = function() {
             selector: "#editor",
             width: $(window).width() - 315,
             height: 500,
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste"
-            ],
+            plugins: tinymce_plugins,
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
         });
     }
     
     return false;
+}
+
+var deletePage = function() {
+    var id = $('#current_page_id').html();
+    
+    DeletePage(id, function(success) {
+        fillList();
+        clear();
+    });
+}
+
+var clear = function() {
+    $('#current_page_id').html('');
+    $('#content .btn').addClass('disabled');
+    $('#editor_title').val('').hide();
+    $('#editor').html('');
+    $('#content h1').html('Welcome').show();
+    $('#edit span').html('Edit');
+    $('#edit').removeClass('btn-primary');
+    $('#edit i').removeClass('icon-white');
+    tinymce.remove('#editor');
 }

@@ -16,6 +16,34 @@ $(function() {
     }
     
     SavePage = function(object, done) {
+        var page = ConstructObject(object);
+        
+        page.save(null, {
+            success: function(savedObject) {
+                done(savedObject);
+            },
+            error: function(object, error) {
+                console.log(error);
+                alert('erreur tabarnak ' + error);
+            }
+        });
+    }
+    
+    DeletePage = function(id, done) {
+        var page = ConstructObject({ id: id });
+        
+        page.destroy({
+            success: function(object) {
+                done(true);
+            },
+            error: function(object, error) {
+                console.log(error);
+                alert('erreur de destroy ' + error);
+            }
+        })
+    }
+    
+    ConstructObject = function(object) {
         var PageModel = Parse.Object.extend("Page");
 
         var page = new PageModel();
@@ -23,13 +51,6 @@ $(function() {
         page.set("title", object.title);
         page.set("content", object.content);
         
-        page.save(null, {
-            success: function(savedObject) {
-                done(savedObject);
-            },
-            error: function(object, error) {
-                alert('erreur tabarnak');
-            }
-        });
+        return page;
     }
 });
