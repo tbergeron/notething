@@ -6,6 +6,7 @@
         <title>Notething</title>
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/loader.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -14,8 +15,9 @@
             
             <div id="sidebar">
                 <div id="sidebar_top">
-                    <input placeholder="Search" type="text" class="input-medium search-query">
-                    <a class="btn" id="add" title="New page" href="#"><i class="icon-file"></i></a>
+                    <input placeholder="Search" type="text" class="search-query">
+                    <a class="btn" id="refresh" title="Refresh" href="#"><i class="icon-refresh"></i></a>
+                    <a class="btn" id="add" title="New" href="#"><i class="icon-file"></i></a>
                 </div>
                 <ul></ul>
             </div>
@@ -35,6 +37,12 @@
     
             </div>
 
+        </div>
+
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.rc.2/handlebars.min.js"></script>

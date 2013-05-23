@@ -69,6 +69,10 @@ div#wrapper div#sidebar div#sidebar_top {
     background-color: #fff;
 }
 
+div#wrapper div#sidebar div#sidebar_top input.search-query {
+    width: 110px;
+}
+
 div#wrapper div#content {
     color: #9a948d;
     margin-left: 250px;

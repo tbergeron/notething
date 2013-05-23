@@ -1,19 +1,20 @@
 var edit_mode = false;
 
 $(function() {
-    $('#add').tooltip({
-       placement: 'bottom' 
-    });
+    $('#add, #refresh').tooltip({ placement: 'bottom' });
     
     $('#sidebar ul li:last').addClass('last');
     
     $('#sidebar ul li a').click(function() {
+        // todo: load page
         $('#sidebar ul li a').removeClass('selected'); 
         $(this).addClass('selected'); 
     });
    
    $('#edit').click(function() {
-     edit();
+     // todo: switch to edit mode
+     // todo: save page
+     // todo: refresh list
    });
                        
     $(window).resize(function(){
@@ -23,33 +24,36 @@ $(function() {
 
     $(window).resize();
     
-    var fillList = function() {
-        var t = '<li>';
-        t = t + '<a href="#">';
-        t = t + '<div class="title">{{title}}</div>';
-        t = t + '<div class="last_update">{{updatedAt}}</div>';
-        t = t + '</a>';
-        t = t + '</li>';
-        
-        GetPages(function(collection) {
-            if (collection) {
-                collection.forEach(function(page) {
-                    var object = { 
-                        id: page.id, 
-                        title: page.get('title'), 
-                        content: page.get('content'),
-                        updatedAt : formatDate(page.updatedAt)
-                    };
-                        
-                    $('#sidebar ul').append(renderTemplate(t, object));
-                });
-            }
-        });
-    };
-
     fillList();
 });
 
+var fillList = function() {
+    $('.loader').show();
+
+    var t = '<li>';
+    t = t + '<a href="#">';
+    t = t + '<div class="title">{{title}}</div>';
+    t = t + '<div class="last_update">{{updatedAt}}</div>';
+    t = t + '</a>';
+    t = t + '</li>';
+    
+    GetPages(function(collection) {
+        if (collection) {
+            collection.forEach(function(page) {
+                var object = { 
+                    id: page.id, 
+                    title: page.get('title'), 
+                    content: page.get('content'),
+                    updatedAt : formatDate(page.updatedAt)
+                };
+                    
+                $('#sidebar ul').append(renderTemplate(t, object));
+            });
+
+            $('.loader').hide();
+        }
+    });
+};
 
 var formatDate = function(d) {
   function pad(n){return n<10 ? '0'+n : n}
@@ -60,7 +64,7 @@ var formatDate = function(d) {
       + pad(d.getUTCHours())+':'
       + pad(d.getUTCMinutes())+':'
       + pad(d.getUTCSeconds())
-}
+};
 
 var renderTemplate = function(html, context) {
     var template = Handlebars.compile(html);
@@ -69,7 +73,7 @@ var renderTemplate = function(html, context) {
     return compiledTemplate;
 };
 
-function edit() {
+var editPage = function() {
     if (edit_mode) {
         edit_mode = false;    
         $('#edit span').html('Edit');
@@ -98,4 +102,4 @@ function edit() {
         });   
         
     }
-}
+};
