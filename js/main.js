@@ -4,6 +4,7 @@ $(function() {
     $('#add, #refresh').tooltip({ placement: 'bottom' });
     
     $('#add').click(function() {
+        $('#edit').removeClass('disabled');
         editPage(); 
     });
     
