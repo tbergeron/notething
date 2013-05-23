@@ -28,9 +28,8 @@ function edit() {
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
         $('#edit i').removeClass('icon-white');
+        $('.mce-tinymce').remove();
 
-tinyMCE.execCommand('mceFocus', false, 'editor');                    
-        tinyMCE.execCommand('mceRemoveControl', false, 'editor');
     } else {
         edit_mode = true;
         $('#edit span').html('Save');
