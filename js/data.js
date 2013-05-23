@@ -3,7 +3,7 @@ $(function() {
 
     var Page = new Model('Page');
 
-    var GetPages = function(done) {    
+    GetPages = function(done) {    
         Page.getList(function(collection) {
             done(collection);
         });

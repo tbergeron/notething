@@ -19,27 +19,27 @@ $(function() {
 
     $(window).resize();
     
+    var fillList = function() {
+        var t = '<ul>';
+        t = t + '{{#each pages}}';
+        t = t + '<li>';
+        t = t + '<a href="#">';
+        t = t + '<div class="title">{{title}}</div>';
+        t = t + '<div class="last_update">{{lastUpdate}}</div>';
+        t = t + '</a>';
+        t = t + '</li>';
+        t = t + '{{/each}}';
+        t = t + '</ul>';
+        
+        GetPages(function(collection) {
+            if (collection) {
+                $('#sidebar').html(renderTemplate(t, collection));
+            }
+        });
+    };
+
     fillList();
 });
-
-var fillList = function() {
-    var t = '<ul>';
-    t = t + '{{#each pages}}';
-    t = t + '<li>';
-    t = t + '<a href="#">';
-    t = t + '<div class="title">{{title}}</div>';
-    t = t + '<div class="last_update">{{lastUpdate}}</div>';
-    t = t + '</a>';
-    t = t + '</li>';
-    t = t + '{{/each}}';
-    t = t + '</ul>';
-    
-    GetPages(function(collection) {
-        if (collection) {
-            $('#sidebar').html(renderTemplate(t, collection));
-        }
-    });
-};
 
 var renderTemplate = function(html, context) {
     var template = Handlebars.compile(html);
