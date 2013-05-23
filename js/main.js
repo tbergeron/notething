@@ -32,7 +32,10 @@ $(function() {
         t = t + '</ul>';
         
         GetPages(function(collection) {
+            console.log(collection);
             if (collection) {
+                console.log(renderTemplate(t, collection));
+                
                 $('#sidebar').html(renderTemplate(t, collection));
             }
         });
