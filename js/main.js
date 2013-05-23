@@ -20,23 +20,25 @@ $(function() {
     $(window).resize();
     
     var fillList = function() {
-        var t = '<ul>';
-        t = t + '{{#each pages}}';
-        t = t + '<li>';
+        var t = '<li>';
         t = t + '<a href="#">';
         t = t + '<div class="title">{{title}}</div>';
         t = t + '<div class="last_update">{{lastUpdate}}</div>';
         t = t + '</a>';
         t = t + '</li>';
-        t = t + '{{/each}}';
-        t = t + '</ul>';
         
         GetPages(function(collection) {
-            console.log(collection);
             if (collection) {
-                console.log(renderTemplate(t, collection));
-                
-                $('#sidebar').html(renderTemplate(t, collection));
+                collection.forEach(function(page) {
+                    var object = { 
+                        id: page.id, 
+                        title: page.get('title'), 
+                        content: page.get('content'),
+                        lastUpdate = page.lastUpdate;
+                    };
+                        
+                    $('#sidebar ul').append(renderTemplate(t, object));
+                });
             }
         });
     };
