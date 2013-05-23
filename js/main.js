@@ -17,12 +17,12 @@ $(function() {
     
     $('#print').click(function() {
         if (!$(this).hasClass('disabled'))
-            window.print();
+            window.print(); return false;
     })
     
     $('#edit').click(function() {
         if (!$(this).hasClass('disabled'))
-            editPage();
+            editPage(); return false;
     });
     
     $('#delete').click(function() {
@@ -195,7 +195,7 @@ var editPage = function() {
         tinymce.init({
             selector: "#editor",
             width: $(window).width() - 315,
-            content_css: 'css/editor_style.css',
+            // content_css: 'css/editor_style.css',
             height: 500,
             plugins: tinymce_plugins,
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
