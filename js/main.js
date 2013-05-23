@@ -30,7 +30,7 @@ $(function() {
 var fillList = function() {
     $('.loader').show();
 
-    var t = '<li>';
+    var t = '<li id="{{id}}">';
     t = t + '<a href="#">';
     t = t + '<div class="title">{{title}}</div>';
     t = t + '<div class="last_update">{{updatedAt}}</div>';
