@@ -4,18 +4,13 @@ $(function() {
     $('#add, #refresh').tooltip({ placement: 'bottom' });
     
     $('#sidebar ul li:last').addClass('last');
-    
-    $('#sidebar ul li a').click(function() {
-        // todo: load page
-        $('#sidebar ul li a').removeClass('selected'); 
-        $(this).addClass('selected'); 
-    });
    
-   $('#edit').click(function() {
+    $('#edit').click(function() {
+       editPage();
      // todo: switch to edit mode
      // todo: save page
      // todo: refresh list
-   });
+    });
                        
     $(window).resize(function(){
         $('#content').css('width', $(window).width() - 315);
@@ -28,6 +23,8 @@ $(function() {
 });
 
 var fillList = function() {
+    $('#sidebar ul li a').unbind('click');
+    
     $('.loader').show();
 
     var t = '<li id="{{id}}">';
@@ -48,11 +45,19 @@ var fillList = function() {
                 };
                     
                 $('#sidebar ul').append(renderTemplate(t, object));
+
+                // this shouldn't be here
+                $('#sidebar ul li a').click(function() {
+                    var id = $(this).parent().attr('id');
+                    loadPage(id);
+                });
+
             });
 
             $('.loader').hide();
         }
     });
+
 };
 
 var formatDate = function(d) {
@@ -73,15 +78,28 @@ var renderTemplate = function(html, context) {
     return compiledTemplate;
 };
 
+var loadPage = function(id) {
+    $('.loader').show();
+    
+    GetPage(id, function(page) {
+        $('#content .btn').removeClass('disabled');
+        $('#content h1').html(page.get('title'));
+        $('#content #editor').html(page.get('content'));
+        
+        // todo: load page
+        $('#sidebar ul li a').removeClass('selected'); 
+        $(this).addClass('selected'); 
+            
+        $('.loader').hide();
+    });
+};
+
 var editPage = function() {
     if (edit_mode) {
         edit_mode = false;    
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
         $('#edit i').removeClass('icon-white');
-        tinymce.remove(tinymce.activeEditor);
-        $('.mce-tinymce').remove();
-        // tinymce.activeEditor.destroy();
 
     } else {
         edit_mode = true;
@@ -99,7 +117,6 @@ var editPage = function() {
                 "insertdatetime media table contextmenu paste"
             ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-        });   
-        
+        });
     }
-};
+}

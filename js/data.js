@@ -8,4 +8,14 @@ $(function() {
             done(collection);
         });
     };
+    
+    GetPage = function(id, done) {
+        Page.getById(id, function(object) {
+            done(object);
+        });
+    }
+    
+    SavePage = function(id, object, done) {
+        // todo: save
+    }
 });

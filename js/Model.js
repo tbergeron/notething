@@ -4,7 +4,7 @@ var Model = function(name) {
 	this.Model = Parse.Object.extend(this.ModelName);
 	this.ModelInstance = new this.Model();
 
-	this.getList = function(callback) {
+    this.getList = function(callback) {
 		var query = new Parse.Query(this.Model);
 		query.find({
 			success: function(results) {
@@ -19,6 +19,24 @@ var Model = function(name) {
 			}
 		});
 	};
+    
+    this.getById = function(id, callback) {
+		var query = new Parse.Query(this.Model);
+
+        query.get(id, {
+            success: function(object) {
+                if (typeof object !== undefined) {
+                    callback(object);
+                } else {
+                    callback(false);
+                }                
+            },
+            error: function(object, error) {
+        		alert("Error: " + error.code + " " + error.message);
+        	}
+        });
+        
+    };
 
 	this.save = function(object, callback) {
 		this.ModelInstance.save(object, {
