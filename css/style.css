@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #9a948d;
+    background-color: #FFFFFF;
+    font-size: 13px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333332;
+}
+
+
+div#wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+div#wrapper div#sidebar {
+    position: fixed;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #FAF9F4;
+    border-right: 1px solid #EBEAE5;
+}
+
+div#wrapper div#sidebar ul {
+    padding: 0;
+    margin: 0;
+}
+
+div#wrapper div#sidebar ul li {
+    list-style-type: none;
+    border-top: 1px solid #EBEAE5;
+}
+
+div#wrapper div#sidebar ul li a {
+    display: block;
+    padding: 10px;
+    color: #4b4a49;
+    text-decoration: none;
+}
+
+div#wrapper div#sidebar ul li a.selected,
+div#wrapper div#sidebar ul li a:hover {
+    background: #ffffff;
+}
+
+div#wrapper div#sidebar ul li.last {
+    border-bottom: 1px solid #EBEAE5;
+}
+
+div#wrapper div#sidebar ul li a div.title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333332;
+    margin-bottom: 2px;
+}
+
+div#wrapper div#sidebar ul li a div.last_update {
+    font-size: 12px;
+    color: #A9A9A9;
+}
+
+div#wrapper div#content {
+    color: #9a948d;
+    margin-left: 250px;
+    padding: 25px;
+    width: 700px;
+}
+
+div#wrapper div#content h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+div#wrapper div#content div.separator {
+    margin: 10px 0;
+    height: 1px;
+    background-color: #EBEAE5;
+}
+
+div#wrapper div#content div.right_float {
+    float: right;
+}
