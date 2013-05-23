@@ -3,8 +3,6 @@ var edit_mode = false;
 $(function() {
     $('#add, #refresh').tooltip({ placement: 'bottom' });
     
-    $('#sidebar ul li:last').addClass('last');
-   
     $('#edit').click(function() {
         if (!$(this).hasClass('disabled'))
             editPage();
@@ -49,10 +47,14 @@ var fillList = function() {
 
                 // this shouldn't be here
                 $('#sidebar ul li a').click(function() {
+                    $('#sidebar ul li a').removeClass('selected'); 
+                    $(this).addClass('selected');
+
                     var id = $(this).parent().attr('id');
                     loadPage(id);
                 });
 
+                $('#sidebar ul li:last').addClass('last');
             });
 
             $('.loader').hide();
@@ -88,9 +90,7 @@ var loadPage = function(id) {
         $('#content #editor').html(page.get('content'));
         
         // todo: load page
-        $('#sidebar ul li a').removeClass('selected'); 
-        $(this).addClass('selected'); 
-            
+        
         $('.loader').hide();
     });
 };
