@@ -179,6 +179,7 @@ var editPage = function() {
                 fillList(success.id);
                 loadPage(success.id);
                 $('.loader').hide();
+                window.location = window.location + success.id;
             } else {
                 alert('Error when saving!');
             }            
