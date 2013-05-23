@@ -6,10 +6,11 @@ $(function() {
     $('#sidebar ul li:last').addClass('last');
    
     $('#edit').click(function() {
-       editPage();
-     // todo: switch to edit mode
-     // todo: save page
-     // todo: refresh list
+        if (!$(this).hasClass('disabled'))
+            editPage();
+        // todo: switch to edit mode
+        // todo: save page
+        // todo: refresh list
     });
                        
     $(window).resize(function(){
