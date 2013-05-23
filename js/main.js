@@ -46,7 +46,13 @@ $(function() {
     });
     
     fillList();
-    $('#add').click();
+
+    if(window.location.hash) {
+        loadPage(window.location.hash.replace('#', ''));
+    } else {
+        $('#add').click();
+    }
+
 });
 
 var fillList = function(select_object_id) {
@@ -56,7 +62,7 @@ var fillList = function(select_object_id) {
     $('.loader').show();
 
     var t = '<li id="{{id}}">';
-    t = t + '<a href="#">';
+    t = t + '<a href="#{{id}}">';
     t = t + '<div class="title">{{{title}}}</div>';
     t = t + '<div class="last_update">{{updatedAt}}</div>';
     t = t + '</a>';
