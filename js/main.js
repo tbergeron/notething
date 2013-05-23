@@ -94,8 +94,6 @@ var loadPage = function(id) {
         $('#content h1').html(page.get('title'));
         $('#content #editor').html(page.get('content'));
         
-        // todo: load page
-        
         $('.loader').hide();
     });
 };
