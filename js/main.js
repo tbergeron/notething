@@ -104,6 +104,7 @@ var editPage = function() {
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
         $('#edit i').removeClass('icon-white');
+        tinymce.remove('#editor');
 
     } else {
         edit_mode = true;
