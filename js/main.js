@@ -18,11 +18,16 @@ $(function() {
 
     $(window).resize();
     
+    $('#refresh').click(function() {
+        fillList(); 
+    });
+    
     fillList();
 });
 
 var fillList = function() {
     $('#sidebar ul li a').unbind('click');
+    $('#sidebar ul').html('');
     
     $('.loader').show();
 
