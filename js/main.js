@@ -43,14 +43,13 @@ $(function() {
         fillList(); 
     });
     
-    fillList();
-
     if(window.location.hash) {
         loadPage(window.location.hash.replace('#', ''));
     } else {
         $('#add').click();
     }
-
+    
+    fillList();
 });
 
 var fillList = function(select_object_id) {
