@@ -55,6 +55,16 @@ div#wrapper div#sidebar ul li a span.hashtag {
     display: none;
 }
 
+input#editor_title {
+    margin: 0;
+    height: 40px;
+    width: 700px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333332;
+    display: none;
+}
+
 div#wrapper div#sidebar ul li a.selected {
     background: #fcf4cc;
     /*background: #EBEAE5;*/

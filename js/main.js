@@ -10,8 +10,7 @@ $(function() {
     });
                        
     $(window).resize(function(){
-        $('#content').css('width', $(window).width() - 315);
-        $('.mce-tinymce').css('width', $(window).width() - 315);
+        $('#content, .mce-tinymce').css('width', $(window).width() - 315);
     });
 
     $(window).resize();
@@ -23,7 +22,7 @@ $(function() {
     fillList();
 });
 
-var fillList = function() {
+var fillList = function(select_object_id) {
     $('#sidebar ul li a').unbind('click');
     $('#sidebar ul').html('');
     
@@ -60,6 +59,7 @@ var fillList = function() {
 
             $('#sidebar ul li:last').addClass('last');
             $('.loader').hide();
+            $('#' + select_object_id + ' a').addClass('selected');
         }
     });
 
@@ -113,21 +113,24 @@ var renderTemplate = function(html, context) {
 };
 
 var loadPage = function(id) {
-    tinymce.remove('#editor');
     edit_mode = false;
-    $('#edit span').html('Edit');
-    $('#edit').removeClass('btn-primary');
-    $('#edit i').removeClass('icon-white');
-    
     $('.loader').show();
     
     GetPage(id, function(page) {
+        $('#content h1').show();
+        $('#editor_title').hide();
+        $('#edit span').html('Edit');
+        $('#edit').removeClass('btn-primary');
+        $('#edit i').removeClass('icon-white');
+        tinymce.remove('#editor');
+
         $('#current_page_id').html(id);
         
         $('#content .btn').removeClass('disabled');
         $('#content h1').html(page.get('title'));
+        $('#editor_title').val(page.get('title'));
         $('#content #editor').html(page.get('content'));
-        
+
         $('.loader').hide();
     });
 };
@@ -135,21 +138,19 @@ var loadPage = function(id) {
 var editPage = function() {
     // Save
     if (edit_mode) {
+        $('.loader').show();
         var object = {
             id: $('#current_page_id').html(),
-            title: $('#content h1').html(),
+            title: $('#editor_title').val(),
             content: tinyMCE.activeEditor.getContent()
         };
         
         SavePage(object, function(success) {
             if (success) {
-                alert('Saved with success!');
                 edit_mode = false;
-                $('#edit span').html('Edit');
-                $('#edit').removeClass('btn-primary');
-                $('#edit i').removeClass('icon-white');
-                tinymce.remove('#editor');
-                fillList();
+                loadPage(object.id);
+                fillList(object.id);
+                $('.loader').hide();
             } else {
                 alert('Error when saving!');
             }            
@@ -161,7 +162,9 @@ var editPage = function() {
         $('#edit span').html('Save');
         $('#edit').addClass('btn-primary');
         $('#edit i').addClass('icon-white');
-        
+        $('#editor_title').show();
+        $('#content h1').hide();
+
         tinymce.init({
             selector: "#editor",
             width: $(window).width() - 315,

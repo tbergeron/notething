@@ -6,6 +6,7 @@ var Model = function(name) {
 
     this.getList = function(callback) {
 		var query = new Parse.Query(this.Model);
+        query.descending("updatedAt");
 		query.find({
 			success: function(results) {
                 if (typeof results !== undefined) {
