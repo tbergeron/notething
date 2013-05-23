@@ -49,7 +49,7 @@ $(function() {
         $('#add').click();
     }
     
-    fillList();
+    fillList($('#current_page_id').html());
 });
 
 var fillList = function(select_object_id) {
