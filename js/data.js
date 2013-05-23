@@ -3,12 +3,9 @@ $(function() {
 
     var Page = new Model('Page');
 
-	Page.getList(function(objects){
-		if (objects) {
-            console.log(objects);
-        } else {
-			alert('Unable to fetch objects!');
-		}
-	});
-
+    var GetPages = function(done) {    
+        Page.getList(function(collection) {
+            done(collection);
+        });
+    };
 });

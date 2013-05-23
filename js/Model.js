@@ -8,7 +8,11 @@ var Model = function(name) {
 		var query = new Parse.Query(this.Model);
 		query.find({
 			success: function(results) {
-				callback(results);
+                if (typeof results !== undefined) {
+                    callback(results);
+                } else {
+                    callback(false);
+                }
 			},
 			error: function(error) {
 				alert("Error: " + error.code + " " + error.message);
