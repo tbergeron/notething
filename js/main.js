@@ -27,9 +27,8 @@ function edit() {
         edit_mode = false;    
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
-        tinymce.triggerSave();                  
-        tinymce.execCommand('mceRemoveControl',false, tinymce.activeEditor.id);
-        //tinymce.activeEditor.destroy();
+        tinyMCE.execCommand('mceFocus', false, 'editor');                    
+        tinyMCE.execCommand('mceRemoveControl', false, 'editor');
     } else {
         edit_mode = true;
         $('#edit span').html('Save');
