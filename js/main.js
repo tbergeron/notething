@@ -27,12 +27,15 @@ function edit() {
         edit_mode = false;    
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
-        tinyMCE.execCommand('mceFocus', false, 'editor');                    
+        $('#edit i').removeClass('icon-white');
+
+tinyMCE.execCommand('mceFocus', false, 'editor');                    
         tinyMCE.execCommand('mceRemoveControl', false, 'editor');
     } else {
         edit_mode = true;
         $('#edit span').html('Save');
         $('#edit').addClass('btn-primary');
+        $('#edit i').addClass('icon-white');
         
         tinymce.init({
             selector: "#editor",
