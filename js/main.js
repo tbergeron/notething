@@ -10,20 +10,6 @@ $(function() {
         $(this).addClass('selected'); 
     });
    
-           
-        tinymce.init({
-            inline: true,
-            selector: "div#editor",
-            width: $(window).width() - 315,
-            height: 500,
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste moxiemanager"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-        });  
-   
    $('#edit').click(function() {
      edit();
    });
@@ -42,14 +28,25 @@ function edit() {
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
         $('#edit i').removeClass('icon-white');
-        $('.mce-tinymce').remove();
+        tinymce.activeEditor.destroy();
 
     } else {
         edit_mode = true;
         $('#edit span').html('Save');
         $('#edit').addClass('btn-primary');
         $('#edit i').addClass('icon-white');
- 
+        
+        tinymce.init({
+            selector: "#editor",
+            width: $(window).width() - 315,
+            height: 525,
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste moxiemanager"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        });   
         
     }
 }
