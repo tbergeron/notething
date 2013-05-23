@@ -53,14 +53,14 @@ div#wrapper div#sidebar ul li.last {
 }
 
 div#wrapper div#sidebar ul li a div.title {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     color: #333332;
     margin-bottom: 2px;
 }
 
 div#wrapper div#sidebar ul li a div.last_update {
-    font-size: 12px;
+    font-size: 13px;
     color: #A9A9A9;
 }
 
