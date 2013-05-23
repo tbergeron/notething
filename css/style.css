@@ -36,6 +36,10 @@ div#wrapper div#sidebar ul li {
     border-top: 1px solid #EBEAE5;
 }
 
+div#wrapper div#sidebar ul li.last {
+    border-bottom: 1px solid #EBEAE5;
+}
+
 div#wrapper div#sidebar ul li a {
     display: block;
     padding: 10px;
@@ -43,13 +47,17 @@ div#wrapper div#sidebar ul li a {
     text-decoration: none;
 }
 
-div#wrapper div#sidebar ul li a.selected,
-div#wrapper div#sidebar ul li a:hover {
-    background: #ffffff;
+div#wrapper div#sidebar ul li a span.hashtag {
+    color: #1A80CD;
 }
 
-div#wrapper div#sidebar ul li.last {
-    border-bottom: 1px solid #EBEAE5;
+div#wrapper div#sidebar ul li a.selected {
+    background: #fcf4cc;
+    /*background: #EBEAE5;*/
+}
+
+div#wrapper div#sidebar ul li a:hover {
+    background: #ffffff;
 }
 
 div#wrapper div#sidebar ul li a div.title {

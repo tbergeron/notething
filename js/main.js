@@ -6,9 +6,7 @@ $(function() {
     $('#edit').click(function() {
         if (!$(this).hasClass('disabled'))
             editPage();
-        // todo: switch to edit mode
-        // todo: save page
-        // todo: refresh list
+            // todo: save page
     });
                        
     $(window).resize(function(){
@@ -33,7 +31,7 @@ var fillList = function() {
 
     var t = '<li id="{{id}}">';
     t = t + '<a href="#">';
-    t = t + '<div class="title">{{title}}</div>';
+    t = t + '<div class="title">{{{title}}}</div>';
     t = t + '<div class="last_update">{{updatedAt}}</div>';
     t = t + '</a>';
     t = t + '</li>';
@@ -43,7 +41,7 @@ var fillList = function() {
             collection.forEach(function(page) {
                 var object = { 
                     id: page.id, 
-                    title: page.get('title'), 
+                    title: parseHashtags(page.get('title')), 
                     content: page.get('content'),
                     updatedAt : formatDate(page.updatedAt)
                 };
@@ -58,15 +56,43 @@ var fillList = function() {
                     var id = $(this).parent().attr('id');
                     loadPage(id);
                 });
-
-                $('#sidebar ul li:last').addClass('last');
             });
 
+            $('#sidebar ul li:last').addClass('last');
             $('.loader').hide();
         }
     });
 
+    $('#search').keyup(function(e) {
+        clearTimeout($.data(this, 'timer'));
+        if (e.keyCode == 13)
+          search(true);
+        else
+          $(this).data('timer', setTimeout(search, 500));
+
+        if ($(this).val() === '') {
+            search(true);
+        }
+    });
+
+    function search(force) {
+        var existingString = $("#search").val();
+        if (!force && existingString.length < 3) return; //wasn't enter, not > 2 char
+
+        $('#sidebar ul li').each(function() {
+            var content = $(this).find('a').html().toLowerCase();
+            if (content.indexOf(existingString.toLowerCase()) != -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
 };
+
+var parseHashtags = function(content) {
+    return content.replace(/(#\w+)/g, '<span class="hashtag">$1</span>');    
+}
 
 var formatDate = function(d) {
   function pad(n){return n<10 ? '0'+n : n}
@@ -87,6 +113,12 @@ var renderTemplate = function(html, context) {
 };
 
 var loadPage = function(id) {
+    tinymce.remove('#editor');
+    edit_mode = false;
+    $('#edit span').html('Edit');
+    $('#edit').removeClass('btn-primary');
+    $('#edit i').removeClass('icon-white');
+    
     $('.loader').show();
     
     GetPage(id, function(page) {
@@ -99,23 +131,31 @@ var loadPage = function(id) {
 };
 
 var editPage = function() {
+    // Save
     if (edit_mode) {
-        edit_mode = false;    
+        edit_mode = false;
         $('#edit span').html('Edit');
         $('#edit').removeClass('btn-primary');
         $('#edit i').removeClass('icon-white');
-        tinymce.remove('#' + tinymce.activeEditor.id);
+        tinymce.remove('#editor');
 
+    // Load Editor
     } else {
         edit_mode = true;
         $('#edit span').html('Save');
         $('#edit').addClass('btn-primary');
         $('#edit i').addClass('icon-white');
         
+        $('.loader').show();
+        
+        setTimeout(function() {
+            $('.loader').hide();
+        }, 1000);
+        
         tinymce.init({
             selector: "#editor",
             width: $(window).width() - 315,
-            height: 525,
+            height: 500,
             plugins: [
                 "advlist autolink lists link image charmap print preview anchor",
                 "searchreplace visualblocks code fullscreen",
@@ -125,6 +165,5 @@ var editPage = function() {
         });
     }
     
-    $("body").scrollTop(0);
     return false;
 }
