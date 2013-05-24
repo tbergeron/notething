@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
-    color: #9a948d;
+    color: #333332;
     background-color: #FFFFFF;
     font-size: 13px;
 }
@@ -96,7 +96,7 @@ div#wrapper div#sidebar div#sidebar_top input.search-query {
 }
 
 div#wrapper div#content {
-    color: #9a948d;
+    color: #333332;
     margin-left: 250px;
     padding: 25px;
     width: 700px;
