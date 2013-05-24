@@ -16,6 +16,7 @@ Features:
 # Objectives
 - Auto-Save
 - Mobile compatible
+- Confirmation messages
 
 # Installation
 
