@@ -5,7 +5,7 @@ notething
 
 Features:
 - Parse backend 
-- Keep full HTML notes
+- Keep full HTML notes (uses CKEditor, might change in the future)
 - Upload images
 - Tag notes
 - Search through notes
