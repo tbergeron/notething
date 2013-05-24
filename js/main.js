@@ -1,10 +1,20 @@
 var edit_mode = false;
-var tinymce_plugins = [
-                "advlist autolink lists link image print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste"
-            ];
-            
+
+var ckeditor_options = { 
+    height: 542,
+    contentsCss : 'css/editor_style.css',
+    
+    toolbar: [
+        ['Source', '-', 'Preview', '-'],
+        ['Paste', 'PasteText', 'PasteFromWord'],
+        ['Find', 'Replace', '-', '-', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+        ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-'],
+        ['Uploadcare', 'youtube', 'Table', 'Smiley', 'SpecialChar', 'PageBreak'],
+        ['Link', 'Unlink', 'Anchor', '-' ],
+        ['Maximumize', 'ShowBlocks']
+    ]
+};
+
 $(function() {
     $('#add, #refresh').tooltip({ placement: 'bottom' });
     
@@ -34,7 +44,7 @@ $(function() {
     });
     
     $(window).resize(function(){
-        $('#content, .mce-tinymce').css('width', $(window).width() - 315);
+        $('#content, textarea#ckeditor').css('width', $(window).width() - 298);
     });
 
     $(window).resize();
@@ -43,7 +53,7 @@ $(function() {
         fillList(); 
     });
     
-    if(window.location.hash) {
+    if (window.location.hash) {
         $('#current_page_id').html(window.location.hash.replace('#', ''));
         loadPage($('#current_page_id').html());
     } else {
@@ -153,13 +163,15 @@ var loadPage = function(id) {
         $('#current_page_id').html(id);
         
         $('#content .btn').removeClass('disabled');
-        $('#content h1').html(parseHashtags(page.get('title')));
+        $('#content h1#page_title').html(parseHashtags(page.get('title')));
         $('#editor_title').val(page.get('title'));
         $('#content #editor').html(page.get('content'));
 
         $('.loader').hide();
     });
 };
+
+var editor = null;
 
 var editPage = function() {
     // Save
@@ -168,7 +180,7 @@ var editPage = function() {
         var object = {
             id: $('#current_page_id').html(),
             title: $('#editor_title').val(),
-            content: tinyMCE.activeEditor.getContent()
+            content: editor.getData()
         };
         
         SavePage(object, function(success) {
@@ -177,7 +189,9 @@ var editPage = function() {
                 fillList(success.id);
                 loadPage(success.id);
                 $('.loader').hide();
-                window.location = window.location + success.id;
+                if (!window.location.hash) {
+                    window.location = window.location + success.id;
+                }
             } else {
                 alert('Error when saving!');
             }            
@@ -190,16 +204,12 @@ var editPage = function() {
         $('#edit').addClass('btn-primary');
         $('#edit i').addClass('icon-white');
         $('#editor_title').show();
-        $('#content h1').hide();
+        $('#content h1#page_title').hide();
 
-        tinymce.init({
-            selector: "#editor",
-            width: $(window).width() - 315,
-            // content_css: 'css/editor_style.css',
-            height: 500,
-            plugins: tinymce_plugins,
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-        });
+        $('#editor').hide();
+        $('<textarea id="ckeditor"></textarea>').insertAfter('#current_page_id');
+        $('textarea#ckeditor').val($('#editor').html());
+		editor = CKEDITOR.replace('ckeditor', ckeditor_options);
     }
     
     return false;
@@ -215,13 +225,18 @@ var deletePage = function() {
 }
 
 var clear = function() {
+    $('#editor').show();
+    $('textarea#ckeditor').remove();
+    
+    if (editor)
+        editor.destroy(); editor = null;
+    
     $('#current_page_id').html('');
     $('#content .btn').addClass('disabled');
     $('#editor_title').val('').hide();
     $('#editor').html('');
-    $('#content h1').html('Welcome').show();
+    $('#content h1#page_title').html('Welcome').show();
     $('#edit span').html('Edit');
     $('#edit').removeClass('btn-primary');
     $('#edit i').removeClass('icon-white');
-    tinymce.remove('#editor');
 }
