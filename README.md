@@ -11,6 +11,11 @@ Features:
 - Search through notes
 - Print notes cleanly
 - Permalink to notes
+- Tablet compatible
+
+# Objectives
+- Auto-Save
+- Mobile compatible
 
 # Installation
 
