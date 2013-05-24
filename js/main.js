@@ -16,6 +16,7 @@ var ckeditor_options = {
         ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
         ['Styles', 'Format', 'Font', 'FontSize'],
         ['TextColor', 'BGColor'],
+        ['Scayt']
 
     ]
 };
