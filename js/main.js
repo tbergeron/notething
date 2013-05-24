@@ -7,11 +7,16 @@ var ckeditor_options = {
     toolbar: [
         ['Source', '-', 'Preview', '-'],
         ['Paste', 'PasteText', 'PasteFromWord'],
-        ['Find', 'Replace', '-', '-', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+        ['Find', 'Replace'],
         ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-'],
         ['Uploadcare', 'youtube', 'Table', 'Smiley', 'SpecialChar', 'PageBreak'],
         ['Link', 'Unlink', 'Anchor', '-' ],
-        ['Maximumize', 'ShowBlocks']
+        ['Maximumize', 'ShowBlocks'],
+        '/',
+        ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+        ['Styles', 'Format', 'Font', 'FontSize'],
+        ['TextColor', 'BGColor'],
+
     ]
 };
 
