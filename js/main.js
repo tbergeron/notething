@@ -50,7 +50,7 @@ $(function() {
     });
     
     $(window).resize(function(){
-        $('#content, textarea#ckeditor').css('width', $(window).width() - 298);
+        $('#content, textarea#ckeditor').css('width', $(window).width() - 300);
     });
 
     $(window).resize();
