@@ -14,6 +14,7 @@ Features:
 - Tablet compatible
 
 # Objectives
+- Versioning
 - Auto-Save
 - Mobile compatible
 - ~~Confirmation messages~~ (done)
