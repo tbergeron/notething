@@ -32,12 +32,14 @@ div#wrapper {
 }
 
 div#wrapper div#sidebar {
+    z-index: 500;
     position: fixed;
-    top: 0;
+    top: 50px;
     width: 250px;
     height: 100%;
     background-color: #FAF9F4;
     border-right: 1px solid #EBEAE5;
+    overflow: auto;
 }
 
 div#wrapper div#sidebar ul {
@@ -86,12 +88,19 @@ div#wrapper div#sidebar ul li a div.last_update {
     color: #A9A9A9;
 }
 
-div#wrapper div#sidebar div#sidebar_top {
+div#wrapper div#sidebar_top {
+    z-index: 1000;
     padding: 10px;
     background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: 30px;
+    border-right: 1px solid #EBEAE5;
 }
 
-div#wrapper div#sidebar div#sidebar_top input.search-query {
+div#wrapper div#sidebar_top input.search-query {
     width: 110px;
 }
 
@@ -129,4 +138,8 @@ div#wrapper div#content div.right_float {
 
 #current_page_id {
     display: none;
+}
+
+.popover {
+    z-index: 1010; /* A value higher than 1010 that solves the problem */
 }

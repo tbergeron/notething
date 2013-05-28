@@ -191,6 +191,7 @@ var editPage = function() {
         
         SavePage(object, function(success) {
             if (success) {
+                message('success', 'Page has been succesfully saved!');
                 edit_mode = false;
                 fillList(success.id);
                 loadPage(success.id);
@@ -225,6 +226,7 @@ var deletePage = function() {
     var id = $('#current_page_id').html();
     
     DeletePage(id, function(success) {
+        message('error', 'Page has been succesfully deleted!');
         fillList();
         clear();
     });
@@ -245,4 +247,11 @@ var clear = function() {
     $('#edit span').html('Edit');
     $('#edit').removeClass('btn-primary');
     $('#edit i').removeClass('icon-white');
+}
+
+var message = function(type, message) {
+    $('.bottom-right').notify({
+        type: type,
+        message: { text: message }
+    }).show();
 }

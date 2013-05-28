@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/loader.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/bootstrap-notify.css">
         <script>
             UPLOADCARE_PUBLIC_KEY = '407b214c4c4c60cde1bd';
         </script>
@@ -16,12 +17,13 @@
         
         <div id="wrapper">
             
+            <div id="sidebar_top">
+                <input id="search" placeholder="Search" type="text" class="search-query">
+                <a class="btn" id="refresh" title="Refresh" href="#"><i class="icon-refresh"></i></a>
+                <a class="btn" id="add" title="New" href="#"><i class="icon-file"></i></a>
+            </div>
+
             <div id="sidebar">
-                <div id="sidebar_top">
-                    <input id="search" placeholder="Search" type="text" class="search-query">
-                    <a class="btn" id="refresh" title="Refresh" href="#"><i class="icon-refresh"></i></a>
-                    <a class="btn" id="add" title="New" href="#"><i class="icon-file"></i></a>
-                </div>
                 <ul></ul>
             </div>
 
@@ -51,12 +53,15 @@
             <span></span>
             <span></span>
         </div>
+        
+        <div class='notifications bottom-right'></div>
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.rc.2/handlebars.min.js"></script>
         <script type="text/javascript" src="//www.parsecdn.com/js/parse-1.2.7.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script src="js/ckeditor/ckeditor.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-notify.js"></script>
         <script src="js/model.js"></script>
         <script src="js/data.js"></script>
         <script src="js/parse.js"></script>
