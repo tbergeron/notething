@@ -17,7 +17,6 @@ var ckeditor_options = {
         ['Styles', 'Format', 'Font', 'FontSize'],
         ['TextColor', 'BGColor'],
         ['Scayt']
-
     ]
 };
 
@@ -101,6 +100,8 @@ var fillList = function(select_object_id) {
 
                     var id = $(this).parent().attr('id');
                     loadPage(id);
+                    
+                    return false;
                 });
             });
 
