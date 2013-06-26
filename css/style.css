@@ -1,10 +1,15 @@
 @media print {
+    
     div#wrapper div#sidebar {
         display: none;
     }
     div#wrapper div#content {
-        margin-left: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
         width: 100% !important;
+    }
+    div#wrapper div#sidebar_top {
+        display: none;
     }
     
     .btn {
