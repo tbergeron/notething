@@ -178,7 +178,7 @@ var loadPage = function(id) {
         $('#content #editor').html(page.get('content'));
 
         window.location = '#' + id;
-        window.document.title = page.get('title') + '— Notething'
+        window.document.title = page.get('title') + ' — Notething'
 
         $('.loader').hide();
     });
