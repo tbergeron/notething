@@ -6,7 +6,7 @@
     
     div#content, div#wrapper {
         margin-left: 0 !important;
-        width: 480px !important;
+        width: 320px !important;
     }
     
     div#content { background-color:pink !important; }
