@@ -198,7 +198,7 @@ var editPage = function() {
                 loadPage(success.id);
                 $('.loader').hide();
                 if (!window.location.hash) {
-                    window.location = window.location + success.id;
+                    window.location = window.location + '#' + success.id;
                 }
             } else {
                 alert('Error when saving!');
