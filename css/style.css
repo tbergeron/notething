@@ -9,6 +9,8 @@
         max-width: 480px !important;
     }
     
+    div#content { background-color:pink !important; }
+    
 }
 
 @media print {
