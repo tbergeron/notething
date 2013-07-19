@@ -4,9 +4,9 @@
         display: none !important;    
     }
     
-    div#content {
+    div#content, div#wrapper {
         margin-left: 0 !important;
-        width: 100% !important;
+        max-width: 480px !important;
     }
     
 }
