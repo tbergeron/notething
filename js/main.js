@@ -162,6 +162,7 @@ var renderTemplate = function(html, context) {
 };
 
 var loadPage = function(id) {
+	console.log(id);
     edit_mode = false;
     $('.loader').show();
     
