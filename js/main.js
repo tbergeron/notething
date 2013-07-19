@@ -107,7 +107,9 @@ var fillList = function(select_object_id) {
 
             $('#sidebar ul li:last').addClass('last');
             $('.loader').hide();
-//            $('#' + select_object_id + ' a').addClass('selected');
+            
+            console.log(select_object_id);
+            $('#' + select_object_id + ' a').addClass('selected');
         }
     });
 
