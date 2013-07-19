@@ -5,7 +5,7 @@
     }
     
     div#sidebar {
-        position: static;
+        position: static !important;
         float: left;
         margin-left: 0 !important;
         width: 100% !important;
