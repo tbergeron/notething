@@ -178,7 +178,7 @@ var loadPage = function(id) {
         $('#editor_title').val(page.get('title'));
         $('#content #editor').html(page.get('content'));
 
-        window.location = window.location + '#' + id;
+        window.location = '#' + id;
 
         $('.loader').hide();
     });
@@ -203,7 +203,7 @@ var editPage = function() {
                 fillList(success.id);
                 loadPage(success.id);
                 $('.loader').hide();
-                window.location = window.location + '#' + success.id;
+                window.location = '#' + success.id;
             } else {
                 alert('Error when saving!');
             }            
