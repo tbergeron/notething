@@ -95,6 +95,7 @@ var fillList = function(select_object_id) {
 
                 // this shouldn't be here
                 $('#sidebar ul li a').click(function() {
+                	console.log('CLCIK');
                     $('#sidebar ul li a').removeClass('selected'); 
                     $(this).addClass('selected');
 
@@ -167,6 +168,7 @@ var loadPage = function(id) {
     $('.loader').show();
     
     GetPage(id, function(page) {
+    	console.log('CALLBACK');
         clear();
 
         $('#current_page_id').html(id);
