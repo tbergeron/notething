@@ -6,12 +6,10 @@
     
     div#content, div#wrapper {
         margin-left: 0 !important;
-        width: 320px !important;
-        padding: 0 !important;
+        max-width: 100% !important;
+        padding: 10px !important;
         margin: 0 !important;
     }
-    
-    div#content { background-color:pink !important; }
     
 }
 
