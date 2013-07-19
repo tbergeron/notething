@@ -24,6 +24,6 @@ Features:
 !! You can even host it on your Dropbox account, download the zip, place it somewhere on your Dropbox, get the link, bookmark it and follow these instructions:
 
 - [Create a Parse account](https://parse.com/) (use yours if you already have one) and create a `js/parse.js` file containing the Parse initialization code in it to get started
-- Host it somewhere (it's plain html)
+- Host it somewhere (it's plain html, you can even use dropbox)
 - ???
 - Profit!
