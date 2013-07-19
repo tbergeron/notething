@@ -93,13 +93,14 @@ var fillList = function(select_object_id) {
                     
                 var a = $(renderTemplate(t, object));
                 $('#sidebar ul').append(a);
-
+		console.log(a);
                 // this shouldn't be here
                 $(a).click(function() {
                     $('#sidebar ul li a').removeClass('selected'); 
                     $(this).addClass('selected');
 
                     var id = $(this).parent().attr('id');
+                    console.log(id);
                     loadPage(id);
                     
                     return false;
@@ -168,7 +169,6 @@ var loadPage = function(id) {
     $('.loader').show();
     
     GetPage(id, function(page) {
-    	console.log('CALLBACK');
         clear();
 
         $('#current_page_id').html(id);
