@@ -1,7 +1,11 @@
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
     
-    div#sidebar {
+    div#sidebar, div#sidebar_top {
         display: none !important;    
+    }
+    
+    div#content {
+        margin-left: 0 !important;
     }
     
 }
