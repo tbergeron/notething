@@ -1,11 +1,12 @@
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
     
-    div#sidebar, div#sidebar_top {
+    div#sidebar, div#sidebar_top, .right_float {
         display: none !important;    
     }
     
     div#content {
         margin-left: 0 !important;
+        width: 100% !important;
     }
     
 }
