@@ -161,7 +161,6 @@ var renderTemplate = function(html, context) {
 };
 
 var loadPage = function(id) {
-	console.log(id);
     edit_mode = false;
     $('.loader').show();
     
@@ -175,9 +174,7 @@ var loadPage = function(id) {
         $('#editor_title').val(page.get('title'));
         $('#content #editor').html(page.get('content'));
 
-        if (!window.location.hash) {
-            window.location = window.location + '#' + id;
-        }
+        window.location = window.location + '#' + id;
 
         $('.loader').hide();
     });
@@ -202,9 +199,7 @@ var editPage = function() {
                 fillList(success.id);
                 loadPage(success.id);
                 $('.loader').hide();
-                if (!window.location.hash) {
-                    window.location = window.location + '#' + success.id;
-                }
+                window.location = window.location + '#' + success.id;
             } else {
                 alert('Error when saving!');
             }            
