@@ -266,7 +266,7 @@ var message = function(type, message) {
 
 var resetJump = function() {
 	setTimeout(function() {
-	  if (location.hash) {
+	  if (window.location.hash) {
 	    window.scrollTo(0, 0);
 	  }
 	}, 1);
