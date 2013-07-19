@@ -179,9 +179,9 @@ var loadPage = function(id) {
 
         window.location = '#' + id;
 
+	resetJump();
+
         $('.loader').hide();
-        
-        return false;
     });
 };
 
@@ -206,7 +206,7 @@ var editPage = function() {
                 $('.loader').hide();
                 window.location = '#' + success.id;
                 
-                return false;
+                resetJump();
             } else {
                 alert('Error when saving!');
             }            
@@ -262,4 +262,12 @@ var message = function(type, message) {
         type: type,
         message: { text: message }
     }).show();
+}
+
+var resetJump = function() {
+	setTimeout(function() {
+	  if (location.hash) {
+	    window.scrollTo(0, 0);
+	  }
+	}, 1);
 }
