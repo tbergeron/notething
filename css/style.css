@@ -1,3 +1,11 @@
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+    
+    div#sidebar {
+        display: none !important;    
+    }
+    
+}
+
 @media print {
     
     div#wrapper div#sidebar {
