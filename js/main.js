@@ -74,7 +74,7 @@ var fillList = function(select_object_id) {
     
     $('.loader').show();
 
-    var t = '<li id="{{id}}">';
+    var t = '<li class="{{id}}">';
     t = t + '<a href="#{{id}}">';
     t = t + '<div class="title">{{{title}}}</div>';
     t = t + '<div class="last_update">{{updatedAt}}</div>';
@@ -99,7 +99,7 @@ var fillList = function(select_object_id) {
                     $('#sidebar ul li a').removeClass('selected'); 
                     $(this).addClass('selected');
 
-                    var id = $(this).parent().attr('id');
+                    var id = $(this).parent().attr('class');
                     loadPage(id);
                     
                     return false;
@@ -179,8 +179,6 @@ var loadPage = function(id) {
 
         window.location = '#' + id;
 
-	resetJump();
-
         $('.loader').hide();
     });
 };
@@ -205,8 +203,6 @@ var editPage = function() {
                 loadPage(success.id);
                 $('.loader').hide();
                 window.location = '#' + success.id;
-                
-                resetJump();
             } else {
                 alert('Error when saving!');
             }            
@@ -262,12 +258,4 @@ var message = function(type, message) {
         type: type,
         message: { text: message }
     }).show();
-}
-
-var resetJump = function() {
-	setTimeout(function() {
-	  if (window.location.hash) {
-	    window.scrollTo(0, 0);
-	  }
-	}, 1);
 }
