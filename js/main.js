@@ -91,11 +91,11 @@ var fillList = function(select_object_id) {
                     updatedAt : formatDate(page.updatedAt)
                 };
                     
-                $('#sidebar ul').append(renderTemplate(t, object));
+                var a = $(renderTemplate(t, object));
+                $('#sidebar ul').append(a);
 
                 // this shouldn't be here
-                $('#sidebar ul li a').click(function() {
-                	console.log('CLCIK');
+                $(a).click(function() {
                     $('#sidebar ul li a').removeClass('selected'); 
                     $(this).addClass('selected');
 
