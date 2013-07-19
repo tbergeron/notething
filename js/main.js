@@ -176,7 +176,7 @@ var loadPage = function(id) {
         $('#content #editor').html(page.get('content'));
 
         if (!window.location.hash) {
-            window.location = window.location + '' + id;
+            window.location = window.location + '#' + id;
         }
 
         $('.loader').hide();
@@ -203,7 +203,7 @@ var editPage = function() {
                 loadPage(success.id);
                 $('.loader').hide();
                 if (!window.location.hash) {
-                    window.location = window.location + '' + success.id;
+                    window.location = window.location + '#' + success.id;
                 }
             } else {
                 alert('Error when saving!');
