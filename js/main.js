@@ -100,7 +100,6 @@ var fillList = function(select_object_id) {
                     $(this).addClass('selected');
 
                     var id = $(this).parent().attr('id');
-                    console.log(id);
                     loadPage(id);
                     
                     return false;
