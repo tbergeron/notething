@@ -59,7 +59,7 @@ $(function() {
     });
     
     if (window.location.hash) {
-        $('#current_page_id').html(window.location.hash.replace('#', ''));
+        $('#current_page_id').html(window.location.hash.replace(/#/g, ''));
         loadPage($('#current_page_id').html());
     } else {
         $('#add').click();
