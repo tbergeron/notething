@@ -174,6 +174,10 @@ var loadPage = function(id) {
         $('#editor_title').val(page.get('title'));
         $('#content #editor').html(page.get('content'));
 
+        if (!window.location.hash) {
+            window.location = window.location + '#' + id;
+        }
+
         $('.loader').hide();
     });
 };
