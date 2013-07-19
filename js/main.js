@@ -180,6 +180,8 @@ var loadPage = function(id) {
         window.location = '#' + id;
 
         $('.loader').hide();
+        
+        return false;
     });
 };
 
@@ -203,6 +205,8 @@ var editPage = function() {
                 loadPage(success.id);
                 $('.loader').hide();
                 window.location = '#' + success.id;
+                
+                return false;
             } else {
                 alert('Error when saving!');
             }            
